@@ -282,7 +282,10 @@ jobs:
         with:
           path: ~/.cache/composer
           key: shared-composer-cache
-
+      # Add github oAuth to load private repos
+      - name: Add github oauth
+        run: echo '${{ secrets.COMPOSER_GITHUB_OAUTH }}' > $GITHUB_WORKSPACE/auth.json
+      
       # Update composer.json and install dependencies such as Databases binaries to run the tests
       # Note that SQLite3 doesn't need to be installed because it is bundle in the GitHub docker image.
       - name: Composer
