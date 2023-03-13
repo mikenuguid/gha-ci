@@ -43,6 +43,9 @@ on:
         type: boolean
         default: false
         description: Whether tests in the vendor folder should be preserved.
+    secrets:
+      COMPOSER_GITHUB_OAUTH:
+        required: true
 
 jobs:
 
@@ -282,6 +285,7 @@ jobs:
         with:
           path: ~/.cache/composer
           key: shared-composer-cache
+      
       # Add github oAuth to load private repos
       - name: Add github oauth
         run: echo '${{ secrets.COMPOSER_GITHUB_OAUTH }}' > $GITHUB_WORKSPACE/auth.json
